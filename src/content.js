@@ -2,6 +2,38 @@ import { getRandomGenre, getTotalGenreCount } from './database.js';
 import { formatGenrePost, formatStatsPost, formatMilestonePost } from '../templates/post_templates.js';
 
 const LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/';
+const SCREENSHOT_WAIT_TIME = 10000; // 10 seconds in milliseconds
+
+/**
+ * Trigger screenshot generation by fetching the URL
+ * Waits 10 seconds for the screenshot service to generate the image
+ * @param {string} url - URL to fetch for screenshot generation
+ */
+async function triggerScreenshotGeneration(url) {
+  try {
+    // Fetch the URL to trigger screenshot generation
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'MusicGenreBot/1.0 (Screenshot Generator)'
+      }
+    });
+
+    if (!response.ok) {
+      console.warn(`Screenshot trigger returned ${response.status} for ${url}`);
+    } else {
+      console.log('✓ Screenshot generation triggered');
+    }
+
+    // Wait 10 seconds for screenshot to be generated
+    console.log('Waiting 10 seconds for screenshot generation...');
+    await new Promise(resolve => setTimeout(resolve, SCREENSHOT_WAIT_TIME));
+    console.log('✓ Screenshot should be ready');
+
+  } catch (error) {
+    console.warn('Could not trigger screenshot generation:', error.message);
+    // Continue anyway - screenshot may already exist or will be generated later
+  }
+}
 
 export async function generateGenrePost() {
   const genre = await getRandomGenre();
@@ -11,6 +43,10 @@ export async function generateGenrePost() {
   }
 
   const url = `${process.env.SITE_URL}/${genre.slug}`;
+
+  // Trigger screenshot generation by visiting the URL
+  console.log(`Triggering screenshot generation for: ${url}`);
+  await triggerScreenshotGeneration(url);
 
   // Fetch Last.fm tracks for this genre
   let tracks = [];
