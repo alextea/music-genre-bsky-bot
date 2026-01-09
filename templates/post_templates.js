@@ -23,7 +23,7 @@ export function formatGenrePost(genre, tracks, url) {
   let post = template(genre, emoji);
 
   if (tracks && tracks.length > 0) {
-    post += '\n\nDiscovered on Last.fm:';
+    post += '\n\nTop tracks:';
 
     // Add tracks one by one, checking length each time
     let tracksAdded = 0;
@@ -40,7 +40,7 @@ export function formatGenrePost(genre, tracks, url) {
       }
     }
 
-    // If we couldn't add any tracks, remove the "Discovered on Last.fm:" header
+    // If we couldn't add any tracks, remove the "Top tracks:" header
     if (tracksAdded === 0) {
       post = template(genre, emoji);
     }
