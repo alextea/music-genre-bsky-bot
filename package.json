@@ -1,0 +1,22 @@
+{
+  "name": "musicgenre-bluesky-bot",
+  "version": "1.0.0",
+  "description": "Daily Bluesky bot for musicgenre.site - posts random music genres with Last.fm tracks",
+  "main": "src/post.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/post.js",
+    "test": "node src/post.js --dry-run"
+  },
+  "keywords": ["bluesky", "bot", "music", "genres"],
+  "author": "alex_tea",
+  "license": "MIT",
+  "dependencies": {
+    "@atproto/api": "^0.13.18",
+    "dotenv": "^16.4.7",
+    "pg": "^8.13.1"
+  },
+  "engines": {
+    "node": ">=22.x"
+  }
+}
