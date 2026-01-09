@@ -2,7 +2,7 @@ import { getRandomGenre, getTotalGenreCount } from './database.js';
 import { formatGenrePost, formatStatsPost, formatMilestonePost } from '../templates/post_templates.js';
 
 const LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/';
-const SCREENSHOT_WAIT_TIME = 10000; // 10 seconds in milliseconds
+const SCREENSHOT_WAIT_TIME = 30000; // 30 seconds in milliseconds
 
 /**
  * Trigger screenshot generation by fetching the URL
