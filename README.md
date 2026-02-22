@@ -27,6 +27,8 @@ bluesky-bot/
 └── .env.example          # Environment variables template
 ```
 
+Last.fm track lookup is handled by the shared [music-genre-lastfm-utils](https://github.com/alextea/music-genre-lastfm-utils) package.
+
 ## Setup Instructions
 
 ### 1. Install Dependencies
@@ -328,7 +330,8 @@ Your Open Graph meta tags from the main app handle this automatically.
 
 **No Last.fm Tracks:**
 - Check that `LASTFM_API_KEY` is set
-- Bot will still post without tracks if API fails
+- The bot searches the full genre name as a Last.fm tag, then falls back to a sliding-window n-gram search (multi-word substrings before individual words) via [music-genre-lastfm-utils](https://github.com/alextea/music-genre-lastfm-utils)
+- Bot will still post without tracks if the API fails or returns no results
 
 **Post Not Appearing:**
 - Check Railway logs: `railway logs`

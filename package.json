@@ -14,6 +14,7 @@
   "dependencies": {
     "@atproto/api": "^0.13.18",
     "dotenv": "^16.4.7",
+    "music-genre-lastfm-utils": "github:alextea/music-genre-lastfm-utils",
     "pg": "^8.13.1"
   },
   "engines": {
